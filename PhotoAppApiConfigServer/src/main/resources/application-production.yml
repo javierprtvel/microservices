@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: git # git for using Git as backend
+  cloud:
+    config:
+      server:
+        git:
+          # uri: # Git repository URI
+          # username:
+          # password:
+          clone-on-start: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    # password:
+
+management:
+  endpoints:
+    web:
+      exposure.include: bus-refresh

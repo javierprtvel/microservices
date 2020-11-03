@@ -1,0 +1,15 @@
+login:
+  url.path: /users/login
+
+spring:
+  datasource:
+    # url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:mysql://mysql-db:3306/photo_app?serverTimezone=UTC
+    username: photoapp_dbuser
+    password: '{cipher}AQBLCNwFvdkL4Z/ez4KxHaJVS7/Q+NWHwRFP75kRLRv3jJCzI50lp16tqHU9nme4sMcLBEq2y9X62h5KiO8JGVzQHKi9/Hkdn3hzWenrtmDPJ5mZQ0WKx/IKUU/jA1MJhnyQj+V2udt9u47Mbr+h4iANjBS1PUnkH9dS/zGNfiorWRYXwC0J36CqkT+JzPt7efea/bfvp1TMdPrnM3O849IbSpue3Y8dbRaNcK+7cLGnYzaO6iu2OaQYBRCCEsBFt0wxy4hRRtooPoEFZGSjdf1FQT5bzePfpSmB/OYqD/r39xUJCAF1PuMZjs/QhGiDOxewCpG3p+gpkvQHhhWzMTFO96gE6m2ek7CGc6BEPaYWAtOLKFFLVhI6d8Z9kI6llV8='
+
+myapplication.environment: DEFAULT FROM CONFIG SERVER
+
+eureka:
+  instance:
+    hostname: users-ws

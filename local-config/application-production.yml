@@ -1,0 +1,12 @@
+gateway:
+  ip: # override it for production
+
+authorization:
+  token:
+    expiration-time: 86400000
+    secret: '{cipher}AQBu+K3/UdwDi7oGO/gTlTY1U+TTRoEA5N3k0DvrE3CN3nRZyoV6oYQVtqE4T2IFDcbbpETPstQUauB+AuSQnusiQdm8IJhwBjnyoHvmGMkf7Oh8/uNsC1ln5sL4t8ryC1GBeO2U094x6EavjD5e/0L+9Jnd0vfx8wafSh8wRMPErx+s13CWUizrTZf713jYeaJk9M1MfcQm1eC+YTo+k06KXQmI33ah6Xt7+4i+MkfkIXBc7gt+2vLytHFK1E3HN6k0cOKGJ8KA+MLxhmaYPLL2dmpCLrHLFk7rt3Jz5696tXbSubaEqChXSnjEZEIcN3W8G0M9jtQ2UbGHS+2VxlbkhN+RRIICoRvP9YV5wJADlzbagNxXDviaBDB4MPgAjj+9xX62LQ0Jp/Ieg2qG2X5fatZYfY8mlTili8Jb7A2zQrzt1V064kQhh0tUZJaCV7wlLKSMxp4YpH3xVfKjJt2d'
+
+eureka:
+  client:
+    password: '{cipher}AQBm19/X1evCLHnuK9FSPbpaY74If6dX164NUvFdxIf7q6i/+xlyoPjF5cQuBHWf7T1g9j1KLXuFc2Au4/FdzAvng82NodGklpfhUXGSpGAO1J4neMtWau7oTY4kcYMhBulFfsUfPbIYDaKQHwg+At9Gs+64bpsMltaImva5Y4akxUJk4T5gjcZvr0jc3Ix5yXcnDJzVxboPEHp1JA2RkCv/ZioBDj++EBOfM0aUtYB0bitNxPafYa+mvsu69weAa098yWryX4ogq2xvGIU6kFY/vhL71GFzJJwIPPuFqWiMwFfYA1HIW337xUs0Kt9JbInH1/AL4nuxUgmcQrFkKq0dVuSTEsyhhPOpOQHyjwldrtNZTyxpM+k9Uc9AyhjZq/k='
+    serviceUrl.defaultZone: http://eureka:${eureka.client.password}@localhost:8010/eureka

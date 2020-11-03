@@ -1,0 +1,61 @@
+spring:
+  datasource:
+    # url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:mysql://localhost:3306/photo_app?serverTimezone=UTC
+    username: photoapp_dbuser
+    password: # override it for production
+  jpa:
+    hibernate:
+      ddl-auto: update # if a table does not exist, it will be created
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: # override it for production
+  zipkin:
+    enabled: true
+    base-url: http://localhost:9411
+    sender.type: web # rabbitmq, kafka
+  sleuth:
+    enabled: true
+    sampler.probability: 0.1
+  devtools:
+    restart.enabled: false
+
+logging:
+  level:
+    root: INFO
+    '[me.learning.microservices.photoapp.api.users.data.AlbumsServiceClient]': INFO
+
+management:
+  trace:
+    http:
+      enabled: true
+  endpoints:
+    web:
+      exposure.include: mappings,routes
+
+eureka:
+  instance:
+    hostname: # override it or set at startup
+    instance-id: ${spring.application.name}:${spring.application.instance-id:${random.value}}
+
+gateway:
+  ip: # set at startup by environment or config server
+
+feign:
+  hystrix:
+    enabled: true
+
+authorization:
+  token:
+    secret: # set at startup by environment or config server
+    expiration-time: 86400000
+
+myapplication.environment: PRODUCTION
+

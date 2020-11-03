@@ -1,0 +1,20 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: # override it for production
+  devtools:
+    restart.enabled: false
+
+eureka:
+  instance:
+    hostname: # override it or set at startup
+    instance-id: ${spring.application.name}:${spring.application.instance-id:${random.value}}
+  client:
+    serviceUrl.defaultZone: http://localhost:8010/eureka
+
+authorization:
+  token:
+    secret: # set at startup by environment or config server
+    expiration-time: 86400000

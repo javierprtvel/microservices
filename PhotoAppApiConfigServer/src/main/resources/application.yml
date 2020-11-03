@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: photoapp-config-server
+  profiles:
+    active: native # git for using Git as backend
+  cloud:
+    config:
+      server:
+        git:
+          # uri: # Git repository URI
+          # username:
+          # password:
+          clone-on-start: true
+        native:
+          searchLocations: 'file:///C:/Users/jporto/Projects/Courses/Spring Boot Microservices and Spring Cloud/local-config'
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 8012
+
+management:
+  endpoints:
+    web:
+      exposure.include: bus-refresh

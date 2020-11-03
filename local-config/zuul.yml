@@ -1,0 +1,9 @@
+zuul:
+  host:
+    socket-timeout-millis: 20000
+    connect-timeout-millis: 20000
+  sensitiveHeaders: Cookie,Set-Cookie #,Authorization
+
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 10000

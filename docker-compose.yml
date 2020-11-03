@@ -1,0 +1,145 @@
+version: "3.8"
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "15671:15671"
+      - "15672:15672"
+    networks:
+      photoapp-backend-net:
+        ipv4_address: 172.16.238.10
+
+  config-server:
+    build: ./PhotoAppApiConfigServer
+    ports:
+      - "8012:8012"
+    volumes:
+      - /c/Users/jporto/Projects/Courses/Spring Boot Microservices and Spring Cloud/docker-compose-config:/config
+      - /c/Users/jporto/Projects/Courses/Spring Boot Microservices and Spring Cloud/PhotoAppApiConfigServer/PKI:/PKI
+    networks:
+      photoapp-backend-net:
+        ipv4_address: 172.16.238.11
+    depends_on:
+      - rabbitmq
+    restart: on-failure:10
+    environment:
+      - spring.rabbitmq.host=rabbitmq
+      - spring.cloud.config.server.native.searchLocations=file:/config
+      - spring.profiles.active=native
+      - encrypt.key-store.location=file:/PKI/apiEncryptionKey.p12
+      - encrypt.key-store.alias=apiEncryptionKey
+      - encrypt.key-store.password=photoapp
+
+  eureka-server:
+    build: ./PhotoAppDiscoveryService
+    ports:
+      - "8010:8010"
+    networks:
+      photoapp-backend-net:
+        ipv4_address: 172.16.238.12
+    depends_on:
+      - config-server
+    restart: on-failure:10
+    environment:
+      - spring.cloud.config.uri=http://config-server:8012
+      - spring.security.user.name=eureka
+      - spring.security.user.password=eureka
+
+  zuul-api-gateway:
+    build: ./PhotoAppZuulApiGateway
+    ports:
+      - "8011:8011"
+    networks:
+      photoapp-backend-net:
+        ipv4_address: 172.16.238.13
+    depends_on:
+      - config-server
+      - eureka-server
+      - users-ws
+      - albums-ws
+    restart: on-failure:10
+    environment:
+      - spring.cloud.config.uri=http://config-server:8012
+
+  zipkin-server:
+    image: openzipkin/zipkin:2.22.1
+    ports:
+      - "9410:9410"
+      - "9411:9411"
+    networks:
+      photoapp-backend-net:
+        ipv4_address: 172.16.238.14
+
+  mysql-db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+      - "33060:33060"
+    networks:
+      photoapp-backend-net:
+        ipv4_address: 172.16.238.15
+    environment:
+      MYSQL_ROOT_PASSWORD: changeit
+      MYSQL_DATABASE: photo_app
+      MYSQL_USER: photoapp_dbuser
+      MYSQL_PASSWORD: photoapp_dbuser
+
+  users-ws:
+    build: ./PhotoAppApiUsers
+    networks:
+      - photoapp-backend-net
+    depends_on:
+      - mysql-db
+      - config-server
+      - eureka-server
+    restart: on-failure:10
+    environment:
+      - spring.cloud.config.uri=http://config-server:8012
+      - spring.zipkin.enabled=true
+      - logging.file.name=/api-logs/users-ws.log
+
+  couchbase-db:
+    image: couchbase:community-6.6.0
+    ports:
+      - "8091-8094:8091-8094"
+      - "11210:11210"
+    networks:
+      photoapp-backend-net:
+        ipv4_address: 172.16.238.17
+
+  albums-ws:
+    build: ./PhotoAppApiAlbums
+    networks:
+      - photoapp-backend-net
+    depends_on:
+      - couchbase-db
+      - config-server
+      - eureka-server
+    restart: on-failure:10
+    environment:
+      - spring.cloud.config.uri=http://config-server:8012
+      - spring.zipkin.enabled=true
+      - logging.file.name=/api-logs/albums-ws.log
+
+  account-management-ws:
+    build: ./PhotoAppApiAccountManagement
+    networks:
+      - photoapp-backend-net
+    depends_on:
+      - config-server
+      - eureka-server
+    restart: on-failure:10
+    environment:
+      - spring.cloud.config.uri=http://config-server:8012
+      - spring.zipkin.enabled=false
+      - logging.file.name=/api-logs/albums-ws.log
+
+networks:
+  photoapp-backend-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.238.0/24"

@@ -1,0 +1,31 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    # password:
+
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance-id:${random.value}}
+  client:
+    serviceUrl.defaultZone: http://localhost:8010/eureka
+
+management:
+  trace:
+    http:
+      # default repositories implementations are in-memory and may consume too many resources
+      # to enable HTTP tracing, contribute a bean implementing HttpTraceRepository or AuditEventRepository
+      enabled: true
+  endpoints:
+    web:
+      exposure.include: beans,health,routes,httptrace
+
+authorization:
+  token:
+    secret: # set at startup by environment or config server
+    expiration-time: 86400000
+
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie #,Authorization

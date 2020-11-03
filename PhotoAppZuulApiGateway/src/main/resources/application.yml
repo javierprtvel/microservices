@@ -1,0 +1,52 @@
+server:
+  port: 8011
+
+spring:
+  application:
+    name: zuul
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance-id:${random.value}}
+  client:
+    serviceUrl.defaultZone: http://localhost:8010/eureka
+
+management:
+  trace:
+    http:
+      # default repositories implementations are in-memory and may consume too many resources
+      # to enable HTTP tracing, contribute a bean implementing HttpTraceRepository or AuditEventRepository
+      enabled: true
+  endpoints:
+    web:
+      exposure.include: beans,health,routes,httptrace
+
+api:
+  h2console:
+    url.path: /users-ws/h2-console
+  signup:
+    url.path: /users-ws/users
+  login:
+    url.path: /users-ws/users/login
+  zuul:
+    actuator:
+      url.path: /actuator/*
+  users:
+    actuator:
+      url.path: /users-ws/actuator/*
+
+authorization:
+  token:
+    secret: fdd1202ef90decd8376dca9bdd2747ed77b417eb7ddc0995184aa3cd7a15fc1b
+    header:
+      name: Authorization
+      prefix: Bearer
+
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie #,Authorization

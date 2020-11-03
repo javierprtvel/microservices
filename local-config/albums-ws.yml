@@ -1,0 +1,7 @@
+spring:
+  couchbase:
+    connection-string: couchbase://localhost
+    user-name: photoapp_dbuser
+    password: '{cipher}AQBsqr28yQi8pdRsKii6NQjY9pX9hJVxHS9kHvDk0eamgnP8WnWuR0deO3+vDSkSHdFbUeXgbzDo97FXa44wnUHhrzmGy1Jontr4Kw09W2bAR2t+7dsO1xcbAhyseays83VtpKJpK6+BHU2vhqencTSwqsjMvmcBqcEydBx9WkC1b1LJi3kiMIlw3Ggyw8npTtS5IWMiZ8j3P+MNvcVAVawANPtJBzer0IMZpc5oGEmbjpRGhE1RROVlhNGek95thP1yY9B+Fc55BWbHBMYFRI+umryDV1jNQn9+oxKdnUcwrb/ZZXNpUUwbFWx116nshz71wEz3BIP/gC4cJzk5te1xAzxMaNq+i73wDRVuI3H+MH0IurYDuPI2sGFmjD9drKs='
+    bucket-name: albums
+    auto-index-creation: true

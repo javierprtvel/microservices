@@ -1,0 +1,5 @@
+encrypt:
+  key-store:
+    location: file:/apiEncryptionKey.p12 # linux docker container
+    alias: apiEncryptionKey
+    # password: # set at startup through environment or any other safe method

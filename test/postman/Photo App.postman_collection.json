@@ -1,0 +1,515 @@
+{
+	"info": {
+		"_postman_id": "d57b9f1e-9b2a-46e9-aa73-c7073f6f5d8f",
+		"name": "Photo App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create-user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Javier\",\r\n    \"lastName\": \"Porto\",\r\n    \"password\": \"12345678\",\r\n    \"email\": \"test4@example.com\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8011/users-ws/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8011",
+					"path": [
+						"users-ws",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-user-ws-status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3YjVjMGM0OS0zOWFjLTQ0NGMtOWJhMC0wZTkyZDhmMDVjZDMiLCJleHAiOjE2MDQ4Nzk5MTJ9.jeSqfZsVy3XBDAr6kAm0Ax-E_8zimV0Gdp8X1n6VtMlS6XmnugTYyXDMFcbdv7uXzhZkLjgV9TF-7lpNdw2naQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhODhiMDc0YS1jOWVmLTRkYTQtOGYxNi1lM2Q5YjNmZDJlNmEiLCJleHAiOjE1OTk3NjA1NjB9.1YzMoRVI_a4zn4-4dUrhgN03SN5t5Hwaz8_wk7_s3l8EMI3D2QzzFKbFudCD0auqapKIaaoogTdvqq9bU4IVZw",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8011/users-ws/users/status/check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8011",
+					"path": [
+						"users-ws",
+						"users",
+						"status",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-actuator",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3YjVjMGM0OS0zOWFjLTQ0NGMtOWJhMC0wZTkyZDhmMDVjZDMiLCJleHAiOjE2MDA0NTIzMjF9.wyw0lWGPHtb1VZpM7oZay3W0Hj_4kfF401FjYb6oJcE9NAy-2WMBrB8RLltvsH0lfp4xoAwAagh0tDaBru1QrA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhODhiMDc0YS1jOWVmLTRkYTQtOGYxNi1lM2Q5YjNmZDJlNmEiLCJleHAiOjE1OTk3NjA1NjB9.1YzMoRVI_a4zn4-4dUrhgN03SN5t5Hwaz8_wk7_s3l8EMI3D2QzzFKbFudCD0auqapKIaaoogTdvqq9bU4IVZw",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8011/users-ws/actuator/mappings",
+					"host": [
+						"localhost"
+					],
+					"port": "8011",
+					"path": [
+						"users-ws",
+						"actuator",
+						"mappings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config-server-current",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3YjVjMGM0OS0zOWFjLTQ0NGMtOWJhMC0wZTkyZDhmMDVjZDMiLCJleHAiOjE2MDAyOTUyOTl9.Qm0Ep61spa7R8SD57TNOEIdsOCpycKCG5T1QeGKdHPw737kIedo_rsLpSzd3A793xiky5oDldz07QC3lZ65NRA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhODhiMDc0YS1jOWVmLTRkYTQtOGYxNi1lM2Q5YjNmZDJlNmEiLCJleHAiOjE1OTk3NjA1NjB9.1YzMoRVI_a4zn4-4dUrhgN03SN5t5Hwaz8_wk7_s3l8EMI3D2QzzFKbFudCD0auqapKIaaoogTdvqq9bU4IVZw",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8012/users-ws/default",
+					"host": [
+						"localhost"
+					],
+					"port": "8012",
+					"path": [
+						"users-ws",
+						"default"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-user-with-albums",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNGNjYzNkZS02MjVmLTQxNmEtYjNlMS1jZGQxOTA2NTcwOTkiLCJleHAiOjE2MDUxMzIzODV9.8AOHkhf1daMqP12hhiLsPH9fGkdgH2kZLqvOXF3B6xGxbm_8t4fQfKhf-b-cgKdR2e4gzYbwDif9CEQYhgqw9Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhODhiMDc0YS1jOWVmLTRkYTQtOGYxNi1lM2Q5YjNmZDJlNmEiLCJleHAiOjE1OTk3NjA1NjB9.1YzMoRVI_a4zn4-4dUrhgN03SN5t5Hwaz8_wk7_s3l8EMI3D2QzzFKbFudCD0auqapKIaaoogTdvqq9bU4IVZw",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8011/users-ws/users/14ccc3de-625f-416a-b3e1-cdd190657099?withAlbums=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8011",
+					"path": [
+						"users-ws",
+						"users",
+						"14ccc3de-625f-416a-b3e1-cdd190657099"
+					],
+					"query": [
+						{
+							"key": "withAlbums",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-all-albums",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3YjVjMGM0OS0zOWFjLTQ0NGMtOWJhMC0wZTkyZDhmMDVjZDMiLCJleHAiOjE2MDQ4Nzk5MTJ9.jeSqfZsVy3XBDAr6kAm0Ax-E_8zimV0Gdp8X1n6VtMlS6XmnugTYyXDMFcbdv7uXzhZkLjgV9TF-7lpNdw2naQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhODhiMDc0YS1jOWVmLTRkYTQtOGYxNi1lM2Q5YjNmZDJlNmEiLCJleHAiOjE1OTk3NjA1NjB9.1YzMoRVI_a4zn4-4dUrhgN03SN5t5Hwaz8_wk7_s3l8EMI3D2QzzFKbFudCD0auqapKIaaoogTdvqq9bU4IVZw",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8011/albums-ws/albums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8011",
+					"path": [
+						"albums-ws",
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-user-albums",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3YjVjMGM0OS0zOWFjLTQ0NGMtOWJhMC0wZTkyZDhmMDVjZDMiLCJleHAiOjE2MDQ4Nzk5MTJ9.jeSqfZsVy3XBDAr6kAm0Ax-E_8zimV0Gdp8X1n6VtMlS6XmnugTYyXDMFcbdv7uXzhZkLjgV9TF-7lpNdw2naQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhODhiMDc0YS1jOWVmLTRkYTQtOGYxNi1lM2Q5YjNmZDJlNmEiLCJleHAiOjE1OTk3NjA1NjB9.1YzMoRVI_a4zn4-4dUrhgN03SN5t5Hwaz8_wk7_s3l8EMI3D2QzzFKbFudCD0auqapKIaaoogTdvqq9bU4IVZw",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8011/albums-ws/users/14ccc3de-625f-416a-b3e1-cdd190657099/albums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8011",
+					"path": [
+						"albums-ws",
+						"users",
+						"14ccc3de-625f-416a-b3e1-cdd190657099",
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-user-album",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNGNjYzNkZS02MjVmLTQxNmEtYjNlMS1jZGQxOTA2NTcwOTkiLCJleHAiOjE2MDUxMzIzODV9.8AOHkhf1daMqP12hhiLsPH9fGkdgH2kZLqvOXF3B6xGxbm_8t4fQfKhf-b-cgKdR2e4gzYbwDif9CEQYhgqw9Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhODhiMDc0YS1jOWVmLTRkYTQtOGYxNi1lM2Q5YjNmZDJlNmEiLCJleHAiOjE1OTk3NjA1NjB9.1YzMoRVI_a4zn4-4dUrhgN03SN5t5Hwaz8_wk7_s3l8EMI3D2QzzFKbFudCD0auqapKIaaoogTdvqq9bU4IVZw",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"14ccc3de-625f-416a-b3e1-cdd190657099\",\r\n    \"name\": \"Test Album 2\",\r\n    \"description\": \"Album data for album creation test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8011/albums-ws/users/14ccc3de-625f-416a-b3e1-cdd190657099/albums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8011",
+					"path": [
+						"albums-ws",
+						"users",
+						"14ccc3de-625f-416a-b3e1-cdd190657099",
+						"albums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"test4@example.com\",\r\n    \"password\": \"12345678\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8011/users-ws/users/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8011",
+					"path": [
+						"users-ws",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bus-refresh",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8012/actuator/bus-refresh",
+					"host": [
+						"localhost"
+					],
+					"port": "8012",
+					"path": [
+						"actuator",
+						"bus-refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config-server-encrypt",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "photoapp_dbuser",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8012/encrypt",
+					"host": [
+						"localhost"
+					],
+					"port": "8012",
+					"path": [
+						"encrypt"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
