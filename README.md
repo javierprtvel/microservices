@@ -1,23 +1,23 @@
-# MICROSERVICES
-This repository contains the code of my coursework for Udemy's [Spring Boot Microservices and Spring Cloud](https://www.udemy.com/course/spring-boot-microservices-and-spring-cloud),
-plus additional refactoring, changes and extensions that I add as I continue learning about microservices.
+# Microservices
+This repository contains the code of my coursework for Udemy's [Spring Boot Microservices and Spring Cloud](https://www.udemy.com/course/spring-boot-microservices-and-spring-cloud) plus additional refactoring, changes and extensions that I add as I continue learning about microservices.
 
 ## Beyond the course
-- Albums microservice is now a proper service with a real database and all the features included in users microservice
+- Albums microservice is a full-fledged service with a real database and all the features included in users microservice
 (authorization with JWT, distributed tracing, Feign + Hystrix for microservice communication, etc.).
 - Improved validation and error control in controller and service layers.
+- Added Lombok to avoid boilerplate code.
 - Substituted ModelMapper with Mapstruct.
 - General code refactoring.
 
 ## Architecture
 The *Photo App* back-end comprehends the following components:
-- **Configuration service**: Spring Cloud configuration server. Configuration communication is made with Spring Cloud
-Bus and RabbitMQ.
+- **Configuration service**: Spring Cloud configuration server. It supplies external configuration
+via Spring Cloud Bus and RabbitMQ middleware.
 - **Discovery service**: Eureka server for service registration and discovery.
 - **API gateway**: Zuul API gateway with load balancing.
 - **Users microservice**: user domain operations microservice.
 - **Albums microservice**: album domain operations microservice.
-- **Account management microservice**: dummy service thought to be the IAM module. Right now, this functionality
+- **Account management microservice**: dummy service conceived as the IAM module. Right now, this functionality
 is implemented in users microservice (sign up and login) and scattered among the API gateway and microservices
 (authorization).
 - **MySQL database**: relational database server for user data.
@@ -27,12 +27,12 @@ is implemented in users microservice (sign up and login) and scattered among the
 for each microservice is made available through a Logstash pipeline deployed along the microservice.
 
 ## Build
-You can build configuration service, discovery service, API gateway and every microservice as a JAR -Spring Boot standalone
-application- by executing ``mvn package [-DskipTests]`` on the root directory of the correspondent project.
+You can build configuration service, discovery service, API gateway and every microservice as JAR files -Spring Boot standalone
+applications- by executing ``mvn package [-DskipTests]`` on the root directory of the correspondent module.
 
 After that, you can build a Docker image executing ```docker build .``` on the same directory, which contains the Dockerfile.
 
-Regarding the third-party components, like databases, tracing information server and centralized logging server, you need to
+Regarding the third-party components like databases, tracing information server and centralized logging server, you need to
 install, setup and run the required software, either as a host program or a Docker container.
 
 ## Execution
@@ -51,30 +51,30 @@ with a sufficient delay between dependent units:
 If a component exits or works incorrectly due to intercommunication or synchronization issues with others, try to restart
 the affected units.
 
-**Note**: at the moment, Couchbase database has to be configured manually (cluster, bucket, application user and indexes,
+**Note**: at the moment, Couchbase database has to be configured manually (cluster, bucket, application user and indexes),
 otherwise the albums microservice will not work. 
 
 ### On-premise
 If you want to launch the application on the host machine, just run the JAR file for each component -configuration can be
-overridden with environment variables-, sticking with the correct startup order. 
+overridden with environment variables- sticking with the correct startup order. 
 
 ### Containers in localhost
 If you prefer to keep your host machine clean, you can launch the full *Photo App* in Docker containers by executing the
-following command in this project root directory:
+following command in the project root directory:
 
 ``docker-compose -p "<projectname>" up -d``
 
 Again, if an intercommunication or synchronization error happens at the startup, try to restart the affected units.
 
-The details of the Docker app can be found in the file [``docker-compose.yml``](./docker-compose.yml) in the root directory. Please notice that
-it does not include the ELK components because of the total amount of memory that would be required (you can remove the
-Zipkin service as well if you want to reduce memory consumption).
+The details of the Docker app can be found in the file [``docker-compose.yml``](./docker-compose.yml) in the root directory. Notice that
+it does not include the ELK components because of the total amount of memory that would be required. You can remove the Zipkin service as
+well to reduce memory consumption.
 
 ### Containers in the Cloud
 Each component includes a Dockerfile in the root directory of its module. You can build an image, upload it to
 you Docker Hub account and then run it on a container in the Cloud (e.g. AWS EC2 instances).
 
-Just be sure to override the configuration regarding external component hostnames, IPs, URIs, credentials, etc. Like this:
+Just **be sure to override the configuration regarding external component hostnames, IPs, URIs, credentials, etc**. Like this:
 
 ```
 RabbitMQ instance with IP 172.17.0.2:
