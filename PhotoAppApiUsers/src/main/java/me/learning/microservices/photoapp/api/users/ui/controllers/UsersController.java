@@ -1,32 +1,21 @@
 package me.learning.microservices.photoapp.api.users.ui.controllers;
 
-import javax.validation.Valid;
-
+import lombok.extern.slf4j.Slf4j;
+import me.learning.microservices.photoapp.api.users.mapper.UserMapper;
+import me.learning.microservices.photoapp.api.users.service.UsersService;
+import me.learning.microservices.photoapp.api.users.shared.UserDto;
+import me.learning.microservices.photoapp.api.users.ui.model.CreateUserRequest;
+import me.learning.microservices.photoapp.api.users.ui.model.CreateUserResponse;
+import me.learning.microservices.photoapp.api.users.ui.model.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import lombok.extern.slf4j.Slf4j;
-import me.learning.microservices.photoapp.api.users.mapper.UserMapper;
-import me.learning.microservices.photoapp.api.users.service.UsersService;
-import me.learning.microservices.photoapp.api.users.service.exception.UserAlreadyExistsException;
-import me.learning.microservices.photoapp.api.users.shared.UserDto;
-import me.learning.microservices.photoapp.api.users.ui.model.CreateUserRequest;
-import me.learning.microservices.photoapp.api.users.ui.model.CreateUserResponse;
-import me.learning.microservices.photoapp.api.users.ui.model.UserResponse;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/users")
@@ -41,16 +30,6 @@ public class UsersController {
 
     @Autowired
     private UserMapper userMapper;
-
-
-    @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "User not found")
-    @ExceptionHandler(UsernameNotFoundException.class)
-    public void userNotFound() {}
-
-    @ResponseStatus(code = HttpStatus.CONFLICT, reason = "User already exists")
-    @ExceptionHandler(UserAlreadyExistsException.class)
-    public void userConflict() {}
-
 
     @GetMapping("/status/check")
     public String status() {
