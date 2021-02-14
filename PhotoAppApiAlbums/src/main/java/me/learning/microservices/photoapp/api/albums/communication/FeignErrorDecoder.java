@@ -1,33 +1,30 @@
 package me.learning.microservices.photoapp.api.albums.communication;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
-import org.springframework.web.server.ResponseStatusException;
-
 import feign.Response;
 import feign.codec.ErrorDecoder;
+import me.learning.microservices.photoapp.api.albums.service.exception.UserNotFoundException;
+import org.springframework.stereotype.Component;
 
 @Component
 public class FeignErrorDecoder implements ErrorDecoder {
 
-    // TODO: refactor this!
     @Override
     public Exception decode(String methodKey, Response response) {
 
         switch (response.status()) {
             case 400:
                 if (methodKey.contains("getUser")) {
-                    return new ResponseStatusException(HttpStatus.valueOf(response.status()), "Bad Request");
+                    return new Exception("Could not retrieve user due to bad request error: " + response.reason());
                 }
                 break;
             case 403:
                 if (methodKey.contains("getUser")) {
-                    return new ResponseStatusException(HttpStatus.valueOf(response.status()), "Forbidden");
+                    return new Exception("Unauthorized to retrieve user: " + response.reason());
                 }
                 break;
             case 404:
                 if (methodKey.contains("getUser")) {
-                    return new ResponseStatusException(HttpStatus.valueOf(response.status()), "User  not found");
+                    return new UserNotFoundException("User not found: " + response.reason());
                 }
                 break;
             default:
