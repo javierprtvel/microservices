@@ -1,29 +1,29 @@
 package me.learning.microservices.photoapp.api.users.service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.learning.microservices.photoapp.api.users.data.AlbumsServiceClient;
 import me.learning.microservices.photoapp.api.users.data.User;
 import me.learning.microservices.photoapp.api.users.data.UsersRepository;
 import me.learning.microservices.photoapp.api.users.mapper.UserMapper;
 import me.learning.microservices.photoapp.api.users.security.authorization.AuthorizationHeaderParser;
+import me.learning.microservices.photoapp.api.users.service.exception.UserAlreadyExistsException;
 import me.learning.microservices.photoapp.api.users.service.exception.UserNotFoundException;
 import me.learning.microservices.photoapp.api.users.shared.UserDto;
-import me.learning.microservices.photoapp.api.users.service.exception.UserAlreadyExistsException;
 import me.learning.microservices.photoapp.api.users.ui.model.AlbumResponse;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-@Slf4j
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class UsersServiceImpl implements UsersService {
 
     private final UsersRepository usersRepository;
@@ -35,16 +35,6 @@ public class UsersServiceImpl implements UsersService {
     private final AlbumsServiceClient albumsServiceClient;
 
     private final AuthorizationHeaderParser authorizationHeaderParser;
-
-    @Autowired
-    public UsersServiceImpl(UsersRepository usersRepository, UserMapper userMapper, PasswordEncoder passwordEncoder,
-        AlbumsServiceClient albumsServiceClient, AuthorizationHeaderParser authorizationHeaderParser) {
-        this.usersRepository = usersRepository;
-        this.userMapper = userMapper;
-        this.passwordEncoder = passwordEncoder;
-        this.albumsServiceClient = albumsServiceClient;
-        this.authorizationHeaderParser = authorizationHeaderParser;
-    }
 
     @Override
     public UserDto createUser(UserDto userDetails) throws UserAlreadyExistsException {

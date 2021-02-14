@@ -1,12 +1,12 @@
 package me.learning.microservices.photoapp.api.albums.service;
 
+import lombok.RequiredArgsConstructor;
 import me.learning.microservices.photoapp.api.albums.data.Album;
 import me.learning.microservices.photoapp.api.albums.data.AlbumsRepository;
 import me.learning.microservices.photoapp.api.albums.mapper.AlbumMapper;
 import me.learning.microservices.photoapp.api.albums.service.exception.AlbumNotFoundException;
 import me.learning.microservices.photoapp.api.albums.service.exception.AlbumServiceException;
 import me.learning.microservices.photoapp.api.albums.shared.AlbumDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,13 +14,12 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class AlbumsServiceImpl implements AlbumsService {
 
-    @Autowired
-    private AlbumsRepository albumsRepository;
+    private final AlbumsRepository albumsRepository;
 
-    @Autowired
-    private AlbumMapper albumMapper;
+    private final AlbumMapper albumMapper;
 
     @Override
     public AlbumDto createAlbum(AlbumDto details) throws AlbumServiceException {

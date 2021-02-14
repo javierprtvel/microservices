@@ -1,5 +1,6 @@
 package me.learning.microservices.photoapp.api.albums.ui.controllers;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.learning.microservices.photoapp.api.albums.data.UsersServiceClient;
 import me.learning.microservices.photoapp.api.albums.mapper.AlbumMapper;
@@ -25,23 +26,20 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @Slf4j
 public class AlbumsController {
 
     @Autowired
     private Environment env;
 
-    @Autowired
-    private AlbumsService albumsService;
+    private final AlbumsService albumsService;
 
-    @Autowired
-    private AlbumMapper albumMapper;
+    private final AlbumMapper albumMapper;
 
-    @Autowired
-    private UsersServiceClient usersServiceClient;
+    private final UsersServiceClient usersServiceClient;
 
-    @Autowired
-    private AuthorizationHeaderParser authorizationHeaderParser;
+    private final AuthorizationHeaderParser authorizationHeaderParser;
 
     @GetMapping("/albums/status/check")
     public String status() {

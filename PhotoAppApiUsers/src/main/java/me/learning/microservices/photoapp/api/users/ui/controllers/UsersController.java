@@ -1,5 +1,6 @@
 package me.learning.microservices.photoapp.api.users.ui.controllers;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.learning.microservices.photoapp.api.users.mapper.UserMapper;
 import me.learning.microservices.photoapp.api.users.service.UsersService;
@@ -21,17 +22,16 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
 @Slf4j
 public class UsersController {
 
     @Autowired
     private Environment env;
 
-    @Autowired
-    private UsersService usersService;
+    private final UsersService usersService;
 
-    @Autowired
-    private UserMapper userMapper;
+    private final UserMapper userMapper;
 
     @GetMapping("/status/check")
     public String status() {
