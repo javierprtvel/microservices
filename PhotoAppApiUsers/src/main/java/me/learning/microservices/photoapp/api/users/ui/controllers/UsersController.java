@@ -3,6 +3,8 @@ package me.learning.microservices.photoapp.api.users.ui.controllers;
 import lombok.extern.slf4j.Slf4j;
 import me.learning.microservices.photoapp.api.users.mapper.UserMapper;
 import me.learning.microservices.photoapp.api.users.service.UsersService;
+import me.learning.microservices.photoapp.api.users.service.exception.UserAlreadyExistsException;
+import me.learning.microservices.photoapp.api.users.service.exception.UserNotFoundException;
 import me.learning.microservices.photoapp.api.users.shared.UserDto;
 import me.learning.microservices.photoapp.api.users.ui.model.CreateUserRequest;
 import me.learning.microservices.photoapp.api.users.ui.model.CreateUserResponse;
@@ -40,7 +42,7 @@ public class UsersController {
     @PostMapping(
         consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
         produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    public ResponseEntity<CreateUserResponse> createUser(@RequestBody @Valid CreateUserRequest userDetails) {
+    public ResponseEntity<CreateUserResponse> createUser(@RequestBody @Valid CreateUserRequest userDetails) throws UserAlreadyExistsException {
         UserDto createdUser = usersService.createUser(userMapper.map(userDetails));
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(userMapper.mapToCreateUserResponse(createdUser));
@@ -52,7 +54,7 @@ public class UsersController {
     @PreAuthorize("principal == #userId")
     public ResponseEntity<UserResponse> getUser(
         @PathVariable("userId") String userId,
-        @RequestParam(name = "withAlbums", required = false, defaultValue = "false") boolean withAlbums) {
+        @RequestParam(name = "withAlbums", required = false, defaultValue = "false") boolean withAlbums) throws UserNotFoundException {
 
         UserDto userDto = withAlbums ?
             usersService.findUserByUserIdWithAlbums(userId)

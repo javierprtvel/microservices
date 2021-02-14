@@ -1,14 +1,13 @@
 package me.learning.microservices.photoapp.api.users.data;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
-import feign.FeignException;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
+import me.learning.microservices.photoapp.api.users.service.exception.AlbumNotFoundException;
 import me.learning.microservices.photoapp.api.users.ui.model.AlbumResponse;
+import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.List;
 
 @Service
 class AlbumsServiceFallbackFactory implements FallbackFactory<AlbumsServiceClient> {
@@ -18,7 +17,7 @@ class AlbumsServiceFallbackFactory implements FallbackFactory<AlbumsServiceClien
 
         private final Throwable cause;
 
-        public AlbumsServiceClientFallback(Throwable cause) {
+        AlbumsServiceClientFallback(Throwable cause) {
             this.cause = cause;
         }
 
@@ -26,10 +25,10 @@ class AlbumsServiceFallbackFactory implements FallbackFactory<AlbumsServiceClien
         public List<AlbumResponse> getAlbums(String authToken, String id) {
 
             // beware of the presence of any FeignErrorDecoder component
-            if (this.cause instanceof FeignException && ((FeignException) this.cause).status() == 404) {
-                log.error("404 error took place when 'getAlbums' was called with userID={}. Error message: {}", id, this.cause.getLocalizedMessage(), this.cause);
+            if (this.cause instanceof AlbumNotFoundException) {
+                log.error("404 error took place when 'getAlbums' was called with userID={}. Error message: {}", id, this.cause.getLocalizedMessage());
             } else {
-                log.error("Another error took place: {}", this.cause.getLocalizedMessage());
+                log.error("Unexpected error took place when 'getAlbums' was called with userID={}. Error message: {}", id, this.cause.getLocalizedMessage());
             }
 
             return Collections.emptyList();

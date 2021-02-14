@@ -47,12 +47,13 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UserDto createUser(UserDto userDetails) {
+    public UserDto createUser(UserDto userDetails) throws UserAlreadyExistsException {
+
+        if (usersRepository.findByEmail(userDetails.getEmail()).isPresent()) {
+            throw new UserAlreadyExistsException("User already exists");
+        }
+
         userDetails.setUserId(UUID.randomUUID().toString());
-
-        usersRepository.findByEmail(userDetails.getEmail())
-            .ifPresent(user -> { throw new UserAlreadyExistsException("User already exists"); });
-
         User user = userMapper.map(userDetails);
         user.setEncryptedPassword(passwordEncoder.encode(userDetails.getPassword()));
         User createdUser = usersRepository.save(user);
@@ -77,32 +78,23 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UserDto findUserDetailsByEmail(String email) {
+    public UserDto findUserDetailsByEmail(String email) throws UserNotFoundException {
         return usersRepository.findByEmail(email)
             .map(userMapper::map)
             .orElseThrow(() -> new UserNotFoundException(email));
     }
 
     @Override
-    public UserDto findUserByUserId(String userId) {
+    public UserDto findUserByUserId(String userId) throws UserNotFoundException {
         return usersRepository.findByUserId(userId)
             .map(userMapper::map)
             .orElseThrow(() -> new UserNotFoundException(userId));
     }
 
     @Override
-    public UserDto findUserByUserIdWithAlbums(String userId) {
+    public UserDto findUserByUserIdWithAlbums(String userId) throws UserNotFoundException {
         log.info("Calling Albums Microservice...");
         String authToken = authorizationHeaderParser.getAuthorizationHeaderFromContext();
-        /* Feign with no fallback approach
-        List<AlbumResponse> albums;
-        try {
-            albums = albumsServiceClient.getAlbums(userId);
-        } catch (FeignException e) {
-            log.error("Error getting albums for user '{}': {}", userId, e.getLocalizedMessage());
-            albums = null;
-        }
-        */
         List<AlbumResponse> albums = albumsServiceClient.getAlbums(authToken, userId);
         log.info("Call for Albums Microservice ended.");
 
