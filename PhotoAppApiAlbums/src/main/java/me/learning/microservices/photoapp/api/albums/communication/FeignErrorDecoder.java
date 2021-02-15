@@ -24,7 +24,7 @@ public class FeignErrorDecoder implements ErrorDecoder {
                 break;
             case 404:
                 if (methodKey.contains("getUser")) {
-                    return new UserNotFoundException("User not found: " + response.reason());
+                    return new UserNotFoundException("User not found");
                 }
                 break;
             default:
