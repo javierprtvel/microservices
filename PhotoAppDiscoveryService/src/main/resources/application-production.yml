@@ -3,3 +3,5 @@ eureka:
     prefer-ip-address: false
   client:
     serviceUrl.defaultZone: # setup at startup by environment or config server
+  server:
+    enableSelfPreservation: true

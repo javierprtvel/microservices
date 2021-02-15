@@ -3,3 +3,7 @@ spring:
     user:
       name: '{cipher}AQBm19/X1evCLHnuK9FSPbpaY74If6dX164NUvFdxIf7q6i/+xlyoPjF5cQuBHWf7T1g9j1KLXuFc2Au4/FdzAvng82NodGklpfhUXGSpGAO1J4neMtWau7oTY4kcYMhBulFfsUfPbIYDaKQHwg+At9Gs+64bpsMltaImva5Y4akxUJk4T5gjcZvr0jc3Ix5yXcnDJzVxboPEHp1JA2RkCv/ZioBDj++EBOfM0aUtYB0bitNxPafYa+mvsu69weAa098yWryX4ogq2xvGIU6kFY/vhL71GFzJJwIPPuFqWiMwFfYA1HIW337xUs0Kt9JbInH1/AL4nuxUgmcQrFkKq0dVuSTEsyhhPOpOQHyjwldrtNZTyxpM+k9Uc9AyhjZq/k='
       password: '{cipher}AQBm19/X1evCLHnuK9FSPbpaY74If6dX164NUvFdxIf7q6i/+xlyoPjF5cQuBHWf7T1g9j1KLXuFc2Au4/FdzAvng82NodGklpfhUXGSpGAO1J4neMtWau7oTY4kcYMhBulFfsUfPbIYDaKQHwg+At9Gs+64bpsMltaImva5Y4akxUJk4T5gjcZvr0jc3Ix5yXcnDJzVxboPEHp1JA2RkCv/ZioBDj++EBOfM0aUtYB0bitNxPafYa+mvsu69weAa098yWryX4ogq2xvGIU6kFY/vhL71GFzJJwIPPuFqWiMwFfYA1HIW337xUs0Kt9JbInH1/AL4nuxUgmcQrFkKq0dVuSTEsyhhPOpOQHyjwldrtNZTyxpM+k9Uc9AyhjZq/k='
+
+eureka:
+  server:
+    enableSelfPreservation: false

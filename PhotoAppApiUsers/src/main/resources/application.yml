@@ -1,5 +1,7 @@
 server:
   port: ${PORT:0}
+  error:
+    include-message: always
 
 spring:
   application:
@@ -73,4 +75,3 @@ login:
   url.path: /users/login
 
 myapplication.environment: DEVELOPMENT
-

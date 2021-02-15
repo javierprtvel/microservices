@@ -12,3 +12,5 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl.defaultZone: http://localhost:8010/eureka
+  server:
+    enableSelfPreservation: false

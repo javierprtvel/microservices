@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import me.learning.microservices.photoapp.api.users.service.exception.UserNotFoundException;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -57,7 +58,12 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult)
         throws IOException, ServletException {
         String username = ((User) authResult.getPrincipal()).getUsername();
-        UserDto userDetails = usersService.findUserDetailsByEmail(username);
+        UserDto userDetails;
+        try {
+            userDetails = usersService.findUserDetailsByEmail(username);
+        } catch (UserNotFoundException e) {
+            throw new ServletException("Could not retrieve user details", e);
+        }
 
         String token = Jwts.builder()
             .setSubject(userDetails.getUserId())

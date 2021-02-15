@@ -1,9 +1,12 @@
 package me.learning.microservices.photoapp.api.users.service.exception;
 
-public class UserAlreadyExistsException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-    public UserAlreadyExistsException() {
-    }
+@ResponseStatus(code = HttpStatus.CONFLICT, reason = "User already exists")
+public class UserAlreadyExistsException extends Exception {
+
+    public UserAlreadyExistsException() {}
 
     public UserAlreadyExistsException(String message) {
         super(message);

@@ -1,21 +1,20 @@
 package me.learning.microservices.photoapp.api.albums.data;
 
-import org.springframework.stereotype.Service;
-
-import me.learning.microservices.photoapp.api.albums.ui.model.UserResponse;
-import feign.FeignException;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
+import me.learning.microservices.photoapp.api.albums.service.exception.UserNotFoundException;
+import me.learning.microservices.photoapp.api.albums.ui.model.UserResponse;
+import org.springframework.stereotype.Service;
 
 @Service
-public class UsersServiceFallbackFactory implements FallbackFactory<UsersServiceClient> {
+class UsersServiceFallbackFactory implements FallbackFactory<UsersServiceClient> {
 
     @Slf4j
     static class UsersServiceClientFallback implements UsersServiceClient {
 
         private final Throwable cause;
 
-        public UsersServiceClientFallback(Throwable cause) {
+        UsersServiceClientFallback(Throwable cause) {
             this.cause = cause;
         }
 
@@ -23,14 +22,10 @@ public class UsersServiceFallbackFactory implements FallbackFactory<UsersService
         public UserResponse getUser(String authToken, String userId) {
 
             // beware of the presence of any FeignErrorDecoder component
-            if (this.cause instanceof FeignException && ((FeignException) this.cause).status() == 404) {
-                log.error(
-                    "404 error took place when 'getUser' was called with userID={}. Error message: {}",
-                    userId,
-                    this.cause.getLocalizedMessage(),
-                    this.cause);
+            if (this.cause instanceof UserNotFoundException) {
+                log.error("404 error took place when 'getUser' was called with userID={}. Error message: {}", userId, this.cause.getLocalizedMessage());
             } else {
-                log.error("Another error took place: {}", this.cause.getLocalizedMessage());
+                log.error("Unexpected error took place when 'getAlbums' was called with userID={}. Error message: {}", userId, this.cause.getLocalizedMessage());
             }
 
             return null;

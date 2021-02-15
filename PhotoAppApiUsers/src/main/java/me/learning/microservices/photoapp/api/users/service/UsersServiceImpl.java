@@ -1,29 +1,29 @@
 package me.learning.microservices.photoapp.api.users.service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.learning.microservices.photoapp.api.users.data.AlbumsServiceClient;
 import me.learning.microservices.photoapp.api.users.data.User;
 import me.learning.microservices.photoapp.api.users.data.UsersRepository;
 import me.learning.microservices.photoapp.api.users.mapper.UserMapper;
 import me.learning.microservices.photoapp.api.users.security.authorization.AuthorizationHeaderParser;
+import me.learning.microservices.photoapp.api.users.service.exception.UserAlreadyExistsException;
 import me.learning.microservices.photoapp.api.users.service.exception.UserNotFoundException;
 import me.learning.microservices.photoapp.api.users.shared.UserDto;
-import me.learning.microservices.photoapp.api.users.service.exception.UserAlreadyExistsException;
 import me.learning.microservices.photoapp.api.users.ui.model.AlbumResponse;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-@Slf4j
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class UsersServiceImpl implements UsersService {
 
     private final UsersRepository usersRepository;
@@ -36,23 +36,14 @@ public class UsersServiceImpl implements UsersService {
 
     private final AuthorizationHeaderParser authorizationHeaderParser;
 
-    @Autowired
-    public UsersServiceImpl(UsersRepository usersRepository, UserMapper userMapper, PasswordEncoder passwordEncoder,
-        AlbumsServiceClient albumsServiceClient, AuthorizationHeaderParser authorizationHeaderParser) {
-        this.usersRepository = usersRepository;
-        this.userMapper = userMapper;
-        this.passwordEncoder = passwordEncoder;
-        this.albumsServiceClient = albumsServiceClient;
-        this.authorizationHeaderParser = authorizationHeaderParser;
-    }
-
     @Override
-    public UserDto createUser(UserDto userDetails) {
+    public UserDto createUser(UserDto userDetails) throws UserAlreadyExistsException {
+
+        if (usersRepository.findByEmail(userDetails.getEmail()).isPresent()) {
+            throw new UserAlreadyExistsException("User already exists");
+        }
+
         userDetails.setUserId(UUID.randomUUID().toString());
-
-        usersRepository.findByEmail(userDetails.getEmail())
-            .ifPresent(user -> { throw new UserAlreadyExistsException("User already exists"); });
-
         User user = userMapper.map(userDetails);
         user.setEncryptedPassword(passwordEncoder.encode(userDetails.getPassword()));
         User createdUser = usersRepository.save(user);
@@ -77,32 +68,23 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UserDto findUserDetailsByEmail(String email) {
+    public UserDto findUserDetailsByEmail(String email) throws UserNotFoundException {
         return usersRepository.findByEmail(email)
             .map(userMapper::map)
             .orElseThrow(() -> new UserNotFoundException(email));
     }
 
     @Override
-    public UserDto findUserByUserId(String userId) {
+    public UserDto findUserByUserId(String userId) throws UserNotFoundException {
         return usersRepository.findByUserId(userId)
             .map(userMapper::map)
             .orElseThrow(() -> new UserNotFoundException(userId));
     }
 
     @Override
-    public UserDto findUserByUserIdWithAlbums(String userId) {
+    public UserDto findUserByUserIdWithAlbums(String userId) throws UserNotFoundException {
         log.info("Calling Albums Microservice...");
         String authToken = authorizationHeaderParser.getAuthorizationHeaderFromContext();
-        /* Feign with no fallback approach
-        List<AlbumResponse> albums;
-        try {
-            albums = albumsServiceClient.getAlbums(userId);
-        } catch (FeignException e) {
-            log.error("Error getting albums for user '{}': {}", userId, e.getLocalizedMessage());
-            albums = null;
-        }
-        */
         List<AlbumResponse> albums = albumsServiceClient.getAlbums(authToken, userId);
         log.info("Call for Albums Microservice ended.");
 

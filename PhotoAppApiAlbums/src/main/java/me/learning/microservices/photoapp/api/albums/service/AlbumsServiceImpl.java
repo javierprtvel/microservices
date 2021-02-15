@@ -1,35 +1,37 @@
 package me.learning.microservices.photoapp.api.albums.service;
 
+import lombok.RequiredArgsConstructor;
 import me.learning.microservices.photoapp.api.albums.data.Album;
 import me.learning.microservices.photoapp.api.albums.data.AlbumsRepository;
 import me.learning.microservices.photoapp.api.albums.mapper.AlbumMapper;
+import me.learning.microservices.photoapp.api.albums.service.exception.AlbumNotFoundException;
+import me.learning.microservices.photoapp.api.albums.service.exception.AlbumServiceException;
 import me.learning.microservices.photoapp.api.albums.shared.AlbumDto;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 @Service
-@Slf4j
+@RequiredArgsConstructor
 public class AlbumsServiceImpl implements AlbumsService {
 
-    @Autowired
-    private AlbumsRepository albumsRepository;
+    private final AlbumsRepository albumsRepository;
 
-    @Autowired
-    private AlbumMapper albumMapper;
+    private final AlbumMapper albumMapper;
 
     @Override
-    public AlbumDto createAlbum(AlbumDto details) {
+    public AlbumDto createAlbum(AlbumDto details) throws AlbumServiceException {
         details.setAlbumId(UUID.randomUUID().toString());
 
         Album album = albumMapper.map(details);
-        Album createdAlbum = albumsRepository.save(album);
+        Album createdAlbum;
+        try {
+            createdAlbum = albumsRepository.save(album);
+        } catch (Exception e) {
+            throw new AlbumServiceException("Album creation failed: " + e.getMessage());
+        }
 
         return albumMapper.map(createdAlbum);
     }
@@ -49,8 +51,9 @@ public class AlbumsServiceImpl implements AlbumsService {
     }
 
     @Override
-    public Optional<AlbumDto> findAlbumById(String id) {
+    public AlbumDto findAlbumById(String id) throws AlbumNotFoundException {
         return albumsRepository.findById(id)
-            .map(albumMapper::map);
+            .map(albumMapper::map)
+            .orElseThrow(() -> new AlbumNotFoundException("Album not found"));
     }
 }
