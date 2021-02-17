@@ -29,3 +29,4 @@ authorization:
 
 zuul:
   sensitiveHeaders: Cookie,Set-Cookie #,Authorization
+  retryable: false
