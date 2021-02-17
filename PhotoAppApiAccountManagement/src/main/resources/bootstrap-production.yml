@@ -2,3 +2,7 @@ spring:
   cloud:
     config:
       uri: http://localhost:8012
+      maxAttempts: 10
+      retry:
+        max-interval: 3000
+        maxAttempts: 6

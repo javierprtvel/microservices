@@ -3,3 +3,6 @@ spring:
     config:
       uri: http://localhost:8012
       name: users-ws # this property can be deleted if the value matches this application name
+      retry:
+        max-interval: 6000
+        maxAttempts: 10
