@@ -48,8 +48,10 @@ with a sufficient delay between dependent units:
 7. Microservices
 8. Zuul API gateway
 
-If a component exits or works incorrectly due to intercommunication or synchronization issues with others, try to restart
-the affected units.
+If a component exits or works incorrectly due to intercommunication or synchronization issues with others, try to bus-refresh
+(``<config-server-hostname>:<config-server-port>/actuator/bus-refresh``) or restart the affected units. An example is when
+users-ws, albums-ws and/or API gateway instances may not have registered properly in Eureka because the discovery server was not
+ready when the client requested registration: do bus-refresh or restart the affected clients.
 
 **Note**: at the moment, Couchbase database has to be configured manually (cluster, bucket, application user and indexes),
 otherwise the albums microservice will not work. 
@@ -64,7 +66,7 @@ following command in the project root directory:
 
 ``docker-compose -p "<projectname>" up -d``
 
-Again, if an intercommunication or synchronization error happens at the startup, try to restart the affected units.
+Again, if an intercommunication or synchronization error happens at the startup, try to bus-refresh or restart the affected units.
 
 The details of the Docker app can be found in the file [``docker-compose.yml``](./docker-compose.yml) in the root directory. Notice that
 it does not include the ELK components because of the total amount of memory that would be required. You can remove the Zipkin service as
@@ -74,7 +76,8 @@ well to reduce memory consumption.
 Each component includes a Dockerfile in the root directory of its module. You can build an image, upload it to
 you Docker Hub account and then run it on a container in the Cloud (e.g. AWS EC2 instances).
 
-Just **be sure to override the configuration regarding external component hostnames, IPs, URIs, credentials, etc**. Like this:
+Just **be sure to override the configuration regarding external component hostnames, IPs, URIs, credentials, etc**. For example, set RabbitMq
+host property in Config Server to correspondent RabbitMq instance IP:
 
 ```
 RabbitMQ instance with IP 172.17.0.2:

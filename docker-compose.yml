@@ -60,7 +60,7 @@ services:
       - eureka-server
       - users-ws
       - albums-ws
-    restart: on-failure:10
+    # restart: on-failure:10
     environment:
       - spring.cloud.config.uri=http://config-server:8012
 
@@ -95,7 +95,7 @@ services:
       - mysql-db
       - config-server
       - eureka-server
-    restart: on-failure:10
+    # restart: on-failure:10
     environment:
       - spring.cloud.config.uri=http://config-server:8012
       - spring.zipkin.enabled=true
@@ -118,7 +118,7 @@ services:
       - couchbase-db
       - config-server
       - eureka-server
-    restart: on-failure:10
+    # restart: on-failure:10
     environment:
       - spring.cloud.config.uri=http://config-server:8012
       - spring.zipkin.enabled=true
@@ -131,7 +131,7 @@ services:
     depends_on:
       - config-server
       - eureka-server
-    restart: on-failure:10
+    # restart: on-failure:10
     environment:
       - spring.cloud.config.uri=http://config-server:8012
       - spring.zipkin.enabled=false

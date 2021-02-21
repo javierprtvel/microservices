@@ -3,6 +3,7 @@ zuul:
     socket-timeout-millis: 20000
     connect-timeout-millis: 20000
   sensitiveHeaders: Cookie,Set-Cookie #,Authorization
+  retryable: true
 
 ribbon:
   ConnectTimeout: 10000
