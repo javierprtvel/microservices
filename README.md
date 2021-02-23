@@ -8,6 +8,7 @@ This repository contains the code of my coursework for Udemy's [Spring Boot Micr
 - Added Lombok to avoid boilerplate code.
 - Substituted ModelMapper with Mapstruct.
 - General code refactoring.
+- Automated testing.
 
 ## Architecture
 The *Photo App* back-end comprehends the following components:
@@ -68,16 +69,16 @@ following command in the project root directory:
 
 Again, if an intercommunication or synchronization error happens at the startup, try to bus-refresh or restart the affected units.
 
-The details of the Docker app can be found in the file [``docker-compose.yml``](./docker-compose.yml) in the root directory. Notice that
-it does not include the ELK components because of the total amount of memory that would be required. You can remove the Zipkin service as
-well to reduce memory consumption.
+The details of the Docker app can be found in the file [``docker-compose.yml``](./docker-compose.yml) in the root directory. Notice
+that it does not include the ELK components because of the total amount of memory that would be required. You can remove the Zipkin
+service as well to reduce memory consumption.
 
 ### Containers in the Cloud
 Each component includes a Dockerfile in the root directory of its module. You can build an image, upload it to
 you Docker Hub account and then run it on a container in the Cloud (e.g. AWS EC2 instances).
 
-Just **be sure to override the configuration regarding external component hostnames, IPs, URIs, credentials, etc**. For example, set RabbitMq
-host property in Config Server to correspondent RabbitMq instance IP:
+Just **be sure to override the configuration regarding external component hostnames, IPs, URIs, credentials, etc**. For example, set
+RabbitMq host property in Config Server to correspondent RabbitMq instance IP:
 
 ```
 RabbitMQ instance with IP 172.17.0.2:
@@ -93,4 +94,7 @@ Config Server instance:
 ```
 
 ## Testing
-There is a *Postman* collection JSON for API testing at the [Postman folder](test/postman).
+Users and albums microservices have **Spring Boot integration tests** that test against databases and external services running in
+containers, using **Testcontainers** library.
+
+Besides, there is a *Postman* collection JSON for API testing at the [Postman folder](test/postman).

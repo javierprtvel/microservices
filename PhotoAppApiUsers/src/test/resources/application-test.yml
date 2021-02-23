@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: users-ws
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: photoapp_dbuser
+    password: photoapp_dbuser
+  jpa:
+    hibernate:
+      ddl-auto: update # if a table does not exist, it will be created
+  h2:
+    console:
+      enabled: false
+      settings:
+        web-allow-others: false
+  zipkin:
+    enabled: false
+  sleuth:
+    enabled: false
+
+management:
+  trace:
+    http:
+      enabled: false
+  endpoints:
+    web:
+      exposure.include:
+
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    serviceUrl.defaultZone: http://localhost:8010/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+feign:
+  hystrix:
+    enabled: true
+
+authorization:
+  token:
+    secret: fdd1202ef90decd8376dca9bdd2747ed77b417eb7ddc0995184aa3cd7a15fc1b
+    expiration-time: 864000000
+    header:
+      name: Authorization
+      prefix: Bearer
+
+timeouts-ms:
+  discovery-service-registration: 60000
