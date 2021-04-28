@@ -1,0 +1,65 @@
+server:
+  port: ${PORT:0}
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: albums-ws
+  couchbase:
+    connection-string: couchbase://localhost
+    bucket-name: albums
+    user-name: albums
+    password: albums
+    auto-index-creation: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  zipkin:
+    enabled: false
+  sleuth:
+    enabled: false
+  devtools:
+    restart.enabled: true
+
+logging:
+  file:
+    name: albums-ws.log
+  level:
+    root: INFO
+    '[me.learning.microservices.photoapp.api.albums.data.UsersServiceClient]': DEBUG
+
+management:
+  trace:
+    http:
+      enabled: false
+  endpoints:
+    web:
+      exposure.include:
+
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    serviceUrl.defaultZone: http://localhost:8010/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+feign:
+  hystrix:
+    enabled: true
+
+authorization:
+  token:
+    secret: fdd1202ef90decd8376dca9bdd2747ed77b417eb7ddc0995184aa3cd7a15fc1b
+    expiration-time: 864000000
+    header:
+      name: Authorization
+      prefix: Bearer
+
+timeouts-ms:
+  discovery-service-registration: 60000
+  couchbase-db-consistency: 2000
