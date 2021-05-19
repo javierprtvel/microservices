@@ -1,4 +1,5 @@
 version: "3.8"
+
 services:
   rabbitmq:
     image: rabbitmq:3-management
@@ -48,10 +49,10 @@ services:
       - spring.security.user.name=eureka
       - spring.security.user.password=eureka
 
-  zuul-api-gateway:
-    build: ./PhotoAppZuulApiGateway
+  api-gateway:
+    build: ./PhotoAppApiGateway
     ports:
-      - "8011:8011"
+      - "8082:8082"
     networks:
       photoapp-backend-net:
         ipv4_address: 172.16.238.13

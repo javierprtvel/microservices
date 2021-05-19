@@ -23,14 +23,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"Javier\",\r\n    \"lastName\": \"Porto\",\r\n    \"password\": \"12345678\",\r\n    \"email\": \"test4@example.com\"\r\n}"
+					"raw": "{\r\n    \"firstName\": \"Javiere\",\r\n    \"lastName\": \"Porto\",\r\n    \"password\": \"12345678\",\r\n    \"email\": \"test3@example.com\"\r\n}"
 				},
 				"url": {
-					"raw": "localhost:8011/users-ws/users",
+					"raw": "localhost:8082/users-ws/users",
 					"host": [
 						"localhost"
 					],
-					"port": "8011",
+					"port": "8082",
 					"path": [
 						"users-ws",
 						"users"
@@ -47,7 +47,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3YjVjMGM0OS0zOWFjLTQ0NGMtOWJhMC0wZTkyZDhmMDVjZDMiLCJleHAiOjE2MDQ4Nzk5MTJ9.jeSqfZsVy3XBDAr6kAm0Ax-E_8zimV0Gdp8X1n6VtMlS6XmnugTYyXDMFcbdv7uXzhZkLjgV9TF-7lpNdw2naQ",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlNjQ0NmUyMy00NmJmLTQzOTktYTI5ZS1kMDY4ZjI4ODllZWMiLCJleHAiOjE2MjIzOTczNjF9.B8KqxMsPZGLuRfYcDUH7MYRebKNA1cWqwBNT2_i6w95BSvT5TXox8A8rcto5YtJWLG5BN2Mfk3Gg7kvdDNI0Lw",
 							"type": "string"
 						}
 					]
@@ -74,12 +74,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8011/users-ws/users/status/check",
+					"raw": "http://localhost:8082/users-ws/users/status/check",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8011",
+					"port": "8082",
 					"path": [
 						"users-ws",
 						"users",
@@ -98,7 +98,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3YjVjMGM0OS0zOWFjLTQ0NGMtOWJhMC0wZTkyZDhmMDVjZDMiLCJleHAiOjE2MDA0NTIzMjF9.wyw0lWGPHtb1VZpM7oZay3W0Hj_4kfF401FjYb6oJcE9NAy-2WMBrB8RLltvsH0lfp4xoAwAagh0tDaBru1QrA",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3NzQ2MmZhYi1mZGQxLTQ0ZmMtYWVhNS1lOGUwOTYyY2E4MjgiLCJleHAiOjE2MTQyODA0Njd9.rOfdaB4bEhMgqNVnfCTiaGu_7KZ5_FzpN-3N5giSm_2CZz-zxnSLCXkoE7GoTDwxlldAjeB5uw3wX4Q27RdEfg",
 							"type": "string"
 						}
 					]
@@ -125,11 +125,11 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8011/users-ws/actuator/mappings",
+					"raw": "localhost:8082/users-ws/actuator/mappings",
 					"host": [
 						"localhost"
 					],
-					"port": "8011",
+					"port": "8082",
 					"path": [
 						"users-ws",
 						"actuator",
@@ -195,7 +195,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNGNjYzNkZS02MjVmLTQxNmEtYjNlMS1jZGQxOTA2NTcwOTkiLCJleHAiOjE2MDUxMzIzODV9.8AOHkhf1daMqP12hhiLsPH9fGkdgH2kZLqvOXF3B6xGxbm_8t4fQfKhf-b-cgKdR2e4gzYbwDif9CEQYhgqw9Q",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlNjQ0NmUyMy00NmJmLTQzOTktYTI5ZS1kMDY4ZjI4ODllZWMiLCJleHAiOjE2MjIzOTczNjF9.B8KqxMsPZGLuRfYcDUH7MYRebKNA1cWqwBNT2_i6w95BSvT5TXox8A8rcto5YtJWLG5BN2Mfk3Gg7kvdDNI0Lw",
 							"type": "string"
 						}
 					]
@@ -222,16 +222,16 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8011/users-ws/users/14ccc3de-625f-416a-b3e1-cdd190657099?withAlbums=true",
+					"raw": "http://localhost:8082/users-ws/users/e6446e23-46bf-4399-a29e-d068f2889eec?withAlbums=true",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8011",
+					"port": "8082",
 					"path": [
 						"users-ws",
 						"users",
-						"14ccc3de-625f-416a-b3e1-cdd190657099"
+						"e6446e23-46bf-4399-a29e-d068f2889eec"
 					],
 					"query": [
 						{
@@ -251,7 +251,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3YjVjMGM0OS0zOWFjLTQ0NGMtOWJhMC0wZTkyZDhmMDVjZDMiLCJleHAiOjE2MDQ4Nzk5MTJ9.jeSqfZsVy3XBDAr6kAm0Ax-E_8zimV0Gdp8X1n6VtMlS6XmnugTYyXDMFcbdv7uXzhZkLjgV9TF-7lpNdw2naQ",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3NzQ2MmZhYi1mZGQxLTQ0ZmMtYWVhNS1lOGUwOTYyY2E4MjgiLCJleHAiOjE2MTQyODA0Njd9.rOfdaB4bEhMgqNVnfCTiaGu_7KZ5_FzpN-3N5giSm_2CZz-zxnSLCXkoE7GoTDwxlldAjeB5uw3wX4Q27RdEfg",
 							"type": "string"
 						}
 					]
@@ -278,12 +278,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8011/albums-ws/albums",
+					"raw": "http://localhost:8082/albums-ws/albums",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8011",
+					"port": "8082",
 					"path": [
 						"albums-ws",
 						"albums"
@@ -300,7 +300,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3YjVjMGM0OS0zOWFjLTQ0NGMtOWJhMC0wZTkyZDhmMDVjZDMiLCJleHAiOjE2MDQ4Nzk5MTJ9.jeSqfZsVy3XBDAr6kAm0Ax-E_8zimV0Gdp8X1n6VtMlS6XmnugTYyXDMFcbdv7uXzhZkLjgV9TF-7lpNdw2naQ",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3NzQ2MmZhYi1mZGQxLTQ0ZmMtYWVhNS1lOGUwOTYyY2E4MjgiLCJleHAiOjE2MTQyODA0Njd9.rOfdaB4bEhMgqNVnfCTiaGu_7KZ5_FzpN-3N5giSm_2CZz-zxnSLCXkoE7GoTDwxlldAjeB5uw3wX4Q27RdEfg",
 							"type": "string"
 						}
 					]
@@ -327,16 +327,16 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8011/albums-ws/users/14ccc3de-625f-416a-b3e1-cdd190657099/albums",
+					"raw": "http://localhost:8082/albums-ws/users/77462fab-fdd1-44fc-aea5-e8e0962ca828/albums",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8011",
+					"port": "8082",
 					"path": [
 						"albums-ws",
 						"users",
-						"14ccc3de-625f-416a-b3e1-cdd190657099",
+						"77462fab-fdd1-44fc-aea5-e8e0962ca828",
 						"albums"
 					]
 				}
@@ -351,7 +351,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNGNjYzNkZS02MjVmLTQxNmEtYjNlMS1jZGQxOTA2NTcwOTkiLCJleHAiOjE2MDUxMzIzODV9.8AOHkhf1daMqP12hhiLsPH9fGkdgH2kZLqvOXF3B6xGxbm_8t4fQfKhf-b-cgKdR2e4gzYbwDif9CEQYhgqw9Q",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3NzQ2MmZhYi1mZGQxLTQ0ZmMtYWVhNS1lOGUwOTYyY2E4MjgiLCJleHAiOjE2MTQyODA0Njd9.rOfdaB4bEhMgqNVnfCTiaGu_7KZ5_FzpN-3N5giSm_2CZz-zxnSLCXkoE7GoTDwxlldAjeB5uw3wX4Q27RdEfg",
 							"type": "string"
 						}
 					]
@@ -379,7 +379,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userId\": \"14ccc3de-625f-416a-b3e1-cdd190657099\",\r\n    \"name\": \"Test Album 2\",\r\n    \"description\": \"Album data for album creation test\"\r\n}",
+					"raw": "{\r\n    \"userId\": \"77462fab-fdd1-44fc-aea5-e8e0962ca828\",\r\n    \"name\": \"Test Album 3\",\r\n    \"description\": \"Album data for album creation test\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -387,16 +387,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8011/albums-ws/users/14ccc3de-625f-416a-b3e1-cdd190657099/albums",
+					"raw": "http://localhost:8082/albums-ws/users/77462fab-fdd1-44fc-aea5-e8e0962ca828/albums",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8011",
+					"port": "8082",
 					"path": [
 						"albums-ws",
 						"users",
-						"14ccc3de-625f-416a-b3e1-cdd190657099",
+						"77462fab-fdd1-44fc-aea5-e8e0962ca828",
 						"albums"
 					]
 				}
@@ -421,14 +421,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"test4@example.com\",\r\n    \"password\": \"12345678\"\r\n}"
+					"raw": "{\r\n    \"email\": \"test2@example.com\",\r\n    \"password\": \"12345678\"\r\n}"
 				},
 				"url": {
-					"raw": "localhost:8011/users-ws/users/login",
+					"raw": "localhost:8082/users-ws/users/login",
 					"host": [
 						"localhost"
 					],
-					"port": "8011",
+					"port": "8082",
 					"path": [
 						"users-ws",
 						"users",
@@ -510,6 +510,5 @@
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

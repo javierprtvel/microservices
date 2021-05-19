@@ -1,0 +1,7 @@
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 10000
+
+eureka:
+  instance:
+    hostname: api-gateway

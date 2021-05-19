@@ -2,7 +2,7 @@ spring:
   cloud:
     config:
       uri: http://localhost:8012
-      name: zuul
+      name: api-gateway
       fail-fast: true
       retry:
         max-interval: 6000
