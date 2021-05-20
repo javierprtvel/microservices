@@ -5,17 +5,18 @@ This repository contains the code of my coursework for Udemy's [Spring Boot Micr
 - Albums microservice is a full-fledged service with a real database and all the features included in users microservice
 (authorization with JWT, distributed tracing, Feign + Hystrix for microservice communication, etc.).
 - Improved validation and error control in controller and service layers.
+- Migrated from Zuul to Spring Cloud API Gateway.
+- Automated testing.
 - Added Lombok to avoid boilerplate code.
 - Substituted ModelMapper with Mapstruct.
 - General code refactoring.
-- Automated testing.
 
 ## Architecture
 The *Photo App* back-end comprehends the following components:
 - **Configuration service**: Spring Cloud configuration server. It supplies external configuration
 via Spring Cloud Bus and RabbitMQ middleware.
 - **Discovery service**: Eureka server for service registration and discovery.
-- **API gateway**: Zuul API gateway with load balancing.
+- **API gateway**: Spring Cloud API gateway with load balancing.
 - **Users microservice**: user domain operations microservice.
 - **Albums microservice**: album domain operations microservice.
 - **Account management microservice**: dummy service conceived as the IAM module. Right now, this functionality
@@ -47,7 +48,7 @@ with a sufficient delay between dependent units:
 5. Zipkin server (unless disabled in the setup)
 6. ELK server (optional)
 7. Microservices
-8. Zuul API gateway
+8. Spring Cloud API gateway
 
 If a component exits or works incorrectly due to intercommunication or synchronization issues with others, try to bus-refresh
 (``<config-server-hostname>:<config-server-port>/actuator/bus-refresh``) or restart the affected units. An example is when

@@ -26,7 +26,3 @@ authorization:
   token:
     secret: # set at startup by environment or config server
     expiration-time: 86400000
-
-zuul:
-  sensitiveHeaders: Cookie,Set-Cookie #,Authorization
-  retryable: false

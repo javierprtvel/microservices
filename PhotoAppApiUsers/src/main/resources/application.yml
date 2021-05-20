@@ -7,8 +7,8 @@ spring:
   application:
     name: users-ws
   datasource:
-    # url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    url: jdbc:mysql://localhost:3306/photo_app?serverTimezone=UTC
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    # url: jdbc:mysql://localhost:3306/photo_app?serverTimezone=UTC
     username: photoapp_dbuser
     password: photoapp_dbuser
   jpa:
@@ -25,7 +25,7 @@ spring:
     username: guest
     password: guest
   zipkin:
-    enabled: true
+    enabled: false
     base-url: http://localhost:9411
     sender.type: web # rabbitmq, kafka
   sleuth:
