@@ -1,7 +1,8 @@
-package me.learning.microservices.photoapp.api.users.data;
+package me.learning.microservices.photoapp.api.users.data.user;
 
 import java.util.Optional;
 
+import me.learning.microservices.photoapp.api.users.data.user.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

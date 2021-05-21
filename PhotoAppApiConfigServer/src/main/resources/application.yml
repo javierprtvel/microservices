@@ -26,3 +26,14 @@ management:
   endpoints:
     web:
       exposure.include: bus-refresh
+
+encrypt:
+  # symmetric encryption
+  # key: mZq4t6w9z$C&F)J@NcRfUjXn2r5u8x!A%D*G-KaPdSgVkYp3s6v9y$B?E(H+MbQeThWmZq4t7w!z%C*F)J@NcRfUjXn2r5u8x/A?D(G+KaPdSgVkYp3s6v9y$B&E)H@McQeThWmZq4t7w!z%C*F-JaNdRgUjXn2r5u8x/A?D(G+KbPeShVmYp3s6v9y$B&E)H@McQfTjWnZr4t7w!z%C*F-JaNdRgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6w9z$B
+  # asymmetric encryption
+  key-store:
+    type: jks
+    location: 'file:///C:/Users/jporto/Projects/Courses/Spring Boot Microservices and Spring Cloud/PhotoAppApiConfigServer/PKI/server.jks'
+    alias: apiEncryptionKey
+    password: photoapp
+    secret: changeme

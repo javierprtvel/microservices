@@ -4,7 +4,7 @@ gateway:
 authorization:
   token:
     expiration-time: 864000000
-    secret: '{cipher}AQBu+K3/UdwDi7oGO/gTlTY1U+TTRoEA5N3k0DvrE3CN3nRZyoV6oYQVtqE4T2IFDcbbpETPstQUauB+AuSQnusiQdm8IJhwBjnyoHvmGMkf7Oh8/uNsC1ln5sL4t8ryC1GBeO2U094x6EavjD5e/0L+9Jnd0vfx8wafSh8wRMPErx+s13CWUizrTZf713jYeaJk9M1MfcQm1eC+YTo+k06KXQmI33ah6Xt7+4i+MkfkIXBc7gt+2vLytHFK1E3HN6k0cOKGJ8KA+MLxhmaYPLL2dmpCLrHLFk7rt3Jz5696tXbSubaEqChXSnjEZEIcN3W8G0M9jtQ2UbGHS+2VxlbkhN+RRIICoRvP9YV5wJADlzbagNxXDviaBDB4MPgAjj+9xX62LQ0Jp/Ieg2qG2X5fatZYfY8mlTili8Jb7A2zQrzt1V064kQhh0tUZJaCV7wlLKSMxp4YpH3xVfKjJt2d'
+    secret: '{cipher}AQAPv1nmwFcyodpT0Hcy9DArkfCZ1RwkRt11Id+WKc95E0i0Vz610081ZjvkUhiT/8WOXzCX7+hQB4DY7fnl8aZ4hOuw8vTKWY3ZUOXzAVh3VgMEuj1qKLylJ66xNu2VKN4aShEMCtuq5itjtP7RAfY6nZy8kp5cdUxFzEzb1UC+++/MHRdpbiQmRdHJgGbp14fWfni9zXSv1tKujMZ+UVE9mRPtjUwtDywE5J5nAxWsEgfKC1lYcvuY8uGTJFewNGigxlyl+G/kScbAhufM3en2uzuWM6e4PeN0VHQlQ61yKm7c3baz6ixVOhx7YbcYGiLGoPZtY169U4L0cYsBkHfBFaZr8ERYow0APYpnLZ9TuYcGtzeXXLwSpTBfHxlAZ4tCEEJAkEin7TMPK2NPpfM+sqZSvTNgrk9/3MCxBHIKRyZ54/6E26bmI6sc2FJgJJz0vG6KCtY1/Wm8k/97I5Pm'
     header:
       name: Authorization
       prefix: Bearer
@@ -17,5 +17,5 @@ spring:
 
 eureka:
   client:
-    password: '{cipher}AQBm19/X1evCLHnuK9FSPbpaY74If6dX164NUvFdxIf7q6i/+xlyoPjF5cQuBHWf7T1g9j1KLXuFc2Au4/FdzAvng82NodGklpfhUXGSpGAO1J4neMtWau7oTY4kcYMhBulFfsUfPbIYDaKQHwg+At9Gs+64bpsMltaImva5Y4akxUJk4T5gjcZvr0jc3Ix5yXcnDJzVxboPEHp1JA2RkCv/ZioBDj++EBOfM0aUtYB0bitNxPafYa+mvsu69weAa098yWryX4ogq2xvGIU6kFY/vhL71GFzJJwIPPuFqWiMwFfYA1HIW337xUs0Kt9JbInH1/AL4nuxUgmcQrFkKq0dVuSTEsyhhPOpOQHyjwldrtNZTyxpM+k9Uc9AyhjZq/k='
+    password: '{cipher}AQBbe8O0mBk8sRrlKtGqAWUZr6F+W+ZotHA1dgCZxsHhSQZ3CIqmSyUvVMajSA3CdjXoXhDYRMcNzoRUX6w7yf/Grds8b5vLLj7RxsR17QyqHmmSSID0D+h4E7D3jNYkzsebn2cllT/4IML8iieZ7Bfwq9xFe2IVLgyghSXFJ84FWeRTZXReI8eRnr2O/9el+EhhFIBymV8Dw3MeiIZCMzMSYM/PE5zXMDD8D5Yjr3rDxHvveDW2z1HLaCj0oDA/3r6ms1qVnUKZNA0HmC+ogmwLl0taFHoE4HJETT5R19CJAAIb+Xh4wt2Joaqx+/a0vw1TpXwpwvpHP39udZq33b0MtS4rIrOJ98mYemEI0clRNe7y0YCrZqZohZlw5Hh0Y6I='
     serviceUrl.defaultZone: http://eureka:${eureka.client.password}@eureka-server:8010/eureka

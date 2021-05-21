@@ -2,7 +2,7 @@ package me.learning.microservices.photoapp.api.users.ui.controllers.utils;
 
 import java.util.Objects;
 import lombok.experimental.UtilityClass;
-import me.learning.microservices.photoapp.api.users.data.User;
+import me.learning.microservices.photoapp.api.users.data.user.User;
 import me.learning.microservices.photoapp.api.users.ui.model.CreateUserResponse;
 import me.learning.microservices.photoapp.api.users.ui.model.UserResponse;
 

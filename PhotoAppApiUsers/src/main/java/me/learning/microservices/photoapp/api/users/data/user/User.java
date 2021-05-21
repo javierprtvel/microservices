@@ -1,4 +1,4 @@
-package me.learning.microservices.photoapp.api.users.data;
+package me.learning.microservices.photoapp.api.users.data.user;
 
 import java.io.Serializable;
 

@@ -1,4 +1,9 @@
 spring:
+  cloud:
+    config:
+      enabled: false
+    bus:
+      enabled: false
   application:
     name: users-ws
   datasource:
@@ -32,10 +37,6 @@ eureka:
     instance-id: ${spring.application.name}:${spring.application.instance-id:${random.value}}
   client:
     serviceUrl.defaultZone: http://localhost:8010/eureka
-
-feign:
-  hystrix:
-    enabled: true
 
 authorization:
   token:

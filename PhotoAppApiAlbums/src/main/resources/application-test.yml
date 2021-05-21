@@ -1,4 +1,9 @@
 spring:
+  cloud:
+    config:
+      enabled: false
+    bus:
+      enabled: false
   application:
     name: albums-ws
   couchbase:
@@ -38,10 +43,6 @@ eureka:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     serviceUrl.defaultZone: http://localhost:8010/eureka
-
-feign:
-  hystrix:
-    enabled: true
 
 authorization:
   token:

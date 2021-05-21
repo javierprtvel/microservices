@@ -4,6 +4,17 @@ spring:
     port: 5672
     username: guest
     # password:
+  config:
+    import: 'optional:configserver:http://localhost:8012'
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8012
+      retry:
+        max-interval: 3000
+        maxAttempts: 6
+    bus:
+      enabled: true
 
 eureka:
   instance:

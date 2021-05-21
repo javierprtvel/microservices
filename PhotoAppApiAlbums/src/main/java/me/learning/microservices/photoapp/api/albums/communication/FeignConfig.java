@@ -1,10 +1,9 @@
 package me.learning.microservices.photoapp.api.albums.communication;
 
+import feign.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-
-import feign.Logger;
 
 @Configuration
 public class FeignConfig {

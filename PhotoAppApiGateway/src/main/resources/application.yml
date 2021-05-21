@@ -2,9 +2,19 @@ server:
   port: 8082
 
 spring:
-  application:
-    name: api-gateway
+  # config: # comment out to enable external configuration
+    # import: 'optional:configserver:http://localhost:8012'
   cloud:
+    config:
+      enabled: false
+      uri: http://localhost:8012
+      name: api-gateway
+      fail-fast: true
+      retry:
+        max-interval: 6000
+        maxAttempts: 10
+    bus:
+      enabled: false
     gateway:
       routes:
         - id: users-ws-auth
@@ -35,10 +45,12 @@ spring:
             - RemoveRequestHeader=Cookie
             - RewritePath=/albums-ws/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
-      # discovery:
-       # locator:
-         # enabled: true
-         # lower-case-service-id: true
+        # discovery:
+        # locator:
+        # enabled: true
+        # lower-case-service-id: true
+  application:
+    name: api-gateway
   rabbitmq:
     host: localhost
     port: 5672
@@ -50,7 +62,9 @@ eureka:
     hostname: localhost
     instance-id: ${spring.application.name}:${spring.application.instance-id:${random.value}}
   client:
-    serviceUrl.defaultZone: http://localhost:8010/eureka
+    user: eureka
+    password: eureka
+    serviceUrl.defaultZone: http://${eureka.client.user}:${eureka.client.password}@localhost:8010/eureka
 
 management:
   trace:

@@ -6,7 +6,7 @@ spring:
     # url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     url: jdbc:mysql://mysql-db:3306/photo_app?serverTimezone=UTC
     username: photoapp_dbuser
-    password: '{cipher}AQBLCNwFvdkL4Z/ez4KxHaJVS7/Q+NWHwRFP75kRLRv3jJCzI50lp16tqHU9nme4sMcLBEq2y9X62h5KiO8JGVzQHKi9/Hkdn3hzWenrtmDPJ5mZQ0WKx/IKUU/jA1MJhnyQj+V2udt9u47Mbr+h4iANjBS1PUnkH9dS/zGNfiorWRYXwC0J36CqkT+JzPt7efea/bfvp1TMdPrnM3O849IbSpue3Y8dbRaNcK+7cLGnYzaO6iu2OaQYBRCCEsBFt0wxy4hRRtooPoEFZGSjdf1FQT5bzePfpSmB/OYqD/r39xUJCAF1PuMZjs/QhGiDOxewCpG3p+gpkvQHhhWzMTFO96gE6m2ek7CGc6BEPaYWAtOLKFFLVhI6d8Z9kI6llV8='
+    password: '{cipher}AQBicyjvVnFZaC0sx6sHDOay/s4asdajszyFEq0Jbs068/StTo1efQK1Btkp15+Z9ULETnlEuBxg1SshhltV3oIQFnzIe77fef9A6Unl9BcHlnEz/Jg8PXh85xkn9jtyl+I8N8StyvLE5PNQR54oD9rVNiwqaukDoCv5ZmqWsTfmgH41lmA3ryIJnWIca4zt1UdoIsay+Bc630nmyWah1MZrBY0Ro+WXAlRezP8M31WKPSmf06Aro2meLQisTJEk0HMYyz9lHaywcwFVjHUDl4FFZYCFuCDFdaYxy217wR/Rp6Do6JI4PuGe8S4WeJoFsjg/cF/H/7J44ffVEaSYljy+Yl6co35UW/swLZPtsSQFiC4BagCfUZBD0tksJf0LNnY='
 
 myapplication.environment: DEFAULT FROM CONFIG SERVER
 

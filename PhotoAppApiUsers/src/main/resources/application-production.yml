@@ -1,4 +1,15 @@
 spring:
+  config:
+    import: 'optional:configserver:http://localhost:8012'
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8012
+      retry:
+        max-interval: 3000
+        maxAttempts: 6
+    bus:
+      enabled: true
   datasource:
     # url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     url: jdbc:mysql://localhost:3306/photo_app?serverTimezone=UTC
@@ -47,10 +58,6 @@ eureka:
 
 gateway:
   ip: # set at startup by environment or config server
-
-feign:
-  hystrix:
-    enabled: true
 
 authorization:
   token:

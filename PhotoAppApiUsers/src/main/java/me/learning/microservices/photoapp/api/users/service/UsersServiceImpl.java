@@ -1,10 +1,13 @@
 package me.learning.microservices.photoapp.api.users.service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.learning.microservices.photoapp.api.users.data.AlbumsServiceClient;
-import me.learning.microservices.photoapp.api.users.data.User;
-import me.learning.microservices.photoapp.api.users.data.UsersRepository;
+import me.learning.microservices.photoapp.api.users.data.album.AlbumsServiceClient;
+import me.learning.microservices.photoapp.api.users.data.user.User;
+import me.learning.microservices.photoapp.api.users.data.user.UsersRepository;
 import me.learning.microservices.photoapp.api.users.mapper.UserMapper;
 import me.learning.microservices.photoapp.api.users.security.authorization.AuthorizationHeaderParser;
 import me.learning.microservices.photoapp.api.users.service.exception.UserAlreadyExistsException;
@@ -15,11 +18,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -62,7 +60,7 @@ public class UsersServiceImpl implements UsersService {
                 true,
                 true,
                 true,
-                Collections.emptyList()
+                List.of()
             ))
             .orElseThrow(() -> new UsernameNotFoundException(username));
     }

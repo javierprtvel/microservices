@@ -1,7 +1,7 @@
 package me.learning.microservices.photoapp.api.albums.ui.controllers.utils;
 
 import lombok.experimental.UtilityClass;
-import me.learning.microservices.photoapp.api.albums.data.Album;
+import me.learning.microservices.photoapp.api.albums.data.album.Album;
 import me.learning.microservices.photoapp.api.albums.ui.model.AlbumResponse;
 
 @UtilityClass

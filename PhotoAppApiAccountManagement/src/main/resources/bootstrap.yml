@@ -1,9 +1,0 @@
-spring:
-  cloud:
-    config:
-      uri: http://localhost:8012
-      name: account-management-ws
-      fail-fast: true
-      retry:
-        max-interval: 6000
-        maxAttempts: 10

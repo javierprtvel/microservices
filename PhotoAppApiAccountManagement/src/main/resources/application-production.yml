@@ -1,4 +1,15 @@
 spring:
+  config:
+    import: 'optional:configserver:http://localhost:8012'
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8012
+      retry:
+        max-interval: 3000
+        maxAttempts: 6
+    bus:
+      enabled: true
   rabbitmq:
     host: localhost
     port: 5672

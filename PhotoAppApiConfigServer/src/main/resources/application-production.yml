@@ -19,3 +19,11 @@ management:
   endpoints:
     web:
       exposure.include: bus-refresh
+
+encrypt:
+  key-store:
+    type: jks
+    location: file:/apiEncryptionKey.jks # linux docker container
+    alias: apiEncryptionKey
+    # password: # set at startup through environment or any other safe method
+    # secret:

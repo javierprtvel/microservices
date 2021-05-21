@@ -1,4 +1,4 @@
-package me.learning.microservices.photoapp.api.albums.data;
+package me.learning.microservices.photoapp.api.albums.data.album;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
