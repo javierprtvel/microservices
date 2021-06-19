@@ -1,4 +1,4 @@
-package me.learning.microservices.photoapp.api.albums.data;
+package me.learning.microservices.photoapp.api.albums.data.album;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

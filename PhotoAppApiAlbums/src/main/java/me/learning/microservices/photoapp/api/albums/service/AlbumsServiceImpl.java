@@ -1,8 +1,8 @@
 package me.learning.microservices.photoapp.api.albums.service;
 
 import lombok.RequiredArgsConstructor;
-import me.learning.microservices.photoapp.api.albums.data.Album;
-import me.learning.microservices.photoapp.api.albums.data.AlbumsRepository;
+import me.learning.microservices.photoapp.api.albums.data.album.Album;
+import me.learning.microservices.photoapp.api.albums.data.album.AlbumsRepository;
 import me.learning.microservices.photoapp.api.albums.mapper.AlbumMapper;
 import me.learning.microservices.photoapp.api.albums.service.exception.AlbumNotFoundException;
 import me.learning.microservices.photoapp.api.albums.service.exception.AlbumServiceException;

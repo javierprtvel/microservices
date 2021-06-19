@@ -2,7 +2,7 @@ package me.learning.microservices.photoapp.api.albums.mapper;
 
 import java.util.List;
 
-import me.learning.microservices.photoapp.api.albums.data.Album;
+import me.learning.microservices.photoapp.api.albums.data.album.Album;
 import me.learning.microservices.photoapp.api.albums.shared.AlbumDto;
 import me.learning.microservices.photoapp.api.albums.ui.model.AlbumResponse;
 import me.learning.microservices.photoapp.api.albums.ui.model.CreateAlbumRequest;

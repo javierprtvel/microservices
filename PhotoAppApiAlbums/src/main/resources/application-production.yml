@@ -2,6 +2,17 @@ server:
   port: ${PORT:0}
 
 spring:
+  config:
+    import: 'optional:configserver:http://localhost:8012'
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8012
+      retry:
+        max-interval: 3000
+        maxAttempts: 6
+    bus:
+      enabled: true
   application:
     name: albums-ws
   couchbase:
@@ -47,10 +58,6 @@ eureka:
 
 gateway:
   ip: # set at startup by environment or config server
-
-feign:
-  hystrix:
-    enabled: true
 
 authorization:
   token:

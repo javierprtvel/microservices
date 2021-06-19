@@ -1,4 +1,4 @@
-package me.learning.microservices.photoapp.api.albums.communication;
+package me.learning.microservices.photoapp.api.albums.data.user;
 
 import feign.Response;
 import feign.codec.ErrorDecoder;
@@ -6,7 +6,7 @@ import me.learning.microservices.photoapp.api.albums.service.exception.UserNotFo
 import org.springframework.stereotype.Component;
 
 @Component
-public class FeignErrorDecoder implements ErrorDecoder {
+public class UsersServiceClientErrorDecoder implements ErrorDecoder {
 
     @Override
     public Exception decode(String methodKey, Response response) {

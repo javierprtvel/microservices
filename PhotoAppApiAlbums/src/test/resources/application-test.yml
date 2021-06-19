@@ -4,6 +4,11 @@ server:
     include-message: always
 
 spring:
+  cloud:
+    config:
+      enabled: false
+    bus:
+      enabled: false
   application:
     name: albums-ws
   couchbase:
@@ -47,10 +52,6 @@ eureka:
     serviceUrl.defaultZone: http://localhost:8010/eureka
     register-with-eureka: true
     fetch-registry: true
-
-feign:
-  hystrix:
-    enabled: true
 
 authorization:
   token:

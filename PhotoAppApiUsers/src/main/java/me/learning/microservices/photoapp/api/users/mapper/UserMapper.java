@@ -1,6 +1,6 @@
 package me.learning.microservices.photoapp.api.users.mapper;
 
-import me.learning.microservices.photoapp.api.users.data.User;
+import me.learning.microservices.photoapp.api.users.data.user.User;
 import me.learning.microservices.photoapp.api.users.shared.UserDto;
 import me.learning.microservices.photoapp.api.users.ui.model.CreateUserRequest;
 import me.learning.microservices.photoapp.api.users.ui.model.CreateUserResponse;

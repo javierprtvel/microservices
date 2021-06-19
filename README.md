@@ -2,10 +2,12 @@
 This repository contains the code of my coursework for Udemy's [Spring Boot Microservices and Spring Cloud](https://www.udemy.com/course/spring-boot-microservices-and-spring-cloud) plus additional refactoring, changes and extensions that I add as I continue learning about microservices.
 
 ## Beyond the course
+- Updated to Spring Boot 2.5.0 and Java 11.
 - Albums microservice is a full-fledged service with a real database and all the features included in users microservice
-(authorization with JWT, distributed tracing, Feign + Hystrix for microservice communication, etc.).
+(authorization with JWT, distributed tracing, Feign for microservice communication, etc.).
 - Improved validation and error control in controller and service layers.
 - Migrated from Zuul to Spring Cloud API Gateway.
+- Migrated from Hystrix to Resilience4j.
 - Automated testing.
 - Added Lombok to avoid boilerplate code.
 - Substituted ModelMapper with Mapstruct.
@@ -60,7 +62,9 @@ otherwise the albums microservice will not work.
 
 ### On-premise
 If you want to launch the application on the host machine, just run the JAR file for each component -configuration can be
-overridden with environment variables- sticking with the correct startup order. 
+overridden with environment variables- sticking with the correct startup order.
+
+Notice that configuration server is disabled by default on all configuration clients.
 
 ### Containers in localhost
 If you prefer to keep your host machine clean, you can launch the full *Photo App* in Docker containers by executing the

@@ -1,8 +1,10 @@
 package me.learning.microservices.photoapp.api.albums.ui.controllers;
 
+import java.util.List;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.learning.microservices.photoapp.api.albums.data.UsersServiceClient;
+import me.learning.microservices.photoapp.api.albums.data.user.UsersServiceClient;
 import me.learning.microservices.photoapp.api.albums.mapper.AlbumMapper;
 import me.learning.microservices.photoapp.api.albums.security.authorization.AuthorizationHeaderParser;
 import me.learning.microservices.photoapp.api.albums.service.AlbumsService;
@@ -18,12 +20,12 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-
-import javax.validation.Valid;
-import java.util.Collections;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -52,7 +54,7 @@ public class AlbumsController {
     public List<AlbumResponse> getUserAlbums(@PathVariable String userId) {
         List<AlbumDto> userAlbumDtos = albumsService.findAlbumsByUserId(userId);
         if (userAlbumDtos == null || userAlbumDtos.isEmpty()) {
-            return Collections.emptyList();
+            return List.of();
         }
         List<AlbumResponse> userAlbums = albumMapper.mapToAlbumResponses(userAlbumDtos);
 
@@ -65,7 +67,7 @@ public class AlbumsController {
     public List<AlbumResponse> getAllAlbums() {
         List<AlbumDto> albumDtos = albumsService.findAllAlbums();
         if (albumDtos == null) {
-            return Collections.emptyList();
+            return List.of();
         }
         List<AlbumResponse> albums = albumMapper.mapToAlbumResponses(albumDtos);
 
