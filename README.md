@@ -9,7 +9,6 @@ This repository contains the code of my coursework for Udemy's [Spring Boot Micr
 - Migrated from Zuul to Spring Cloud API Gateway.
 - Migrated from Hystrix to Resilience4j.
 - Automated testing.
-- CI/CD pipeline.
 - Added Lombok to avoid boilerplate code.
 - Substituted ModelMapper with Mapstruct.
 - General code refactoring.
