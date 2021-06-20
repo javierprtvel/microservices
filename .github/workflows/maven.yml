@@ -24,7 +24,7 @@ jobs:
     - name: Build Config Server
       run: mvn -B package --file PhotoAppApiConfigServer/pom.xml
     - name: Build Discovery Service
-      run: mvn -B package --file PhotoAppApiDiscoveryService/pom.xml
+      run: mvn -B package --file PhotoAppDiscoveryService/pom.xml
     - name: Build Account Management microservice
       run: mvn -B package --file PhotoAppApiAccountManagement/pom.xml
     - name: Build Users microservice
