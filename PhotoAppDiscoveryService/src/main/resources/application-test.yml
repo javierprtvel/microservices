@@ -4,3 +4,8 @@ spring:
       enabled: false
     bus:
       enabled: false
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
