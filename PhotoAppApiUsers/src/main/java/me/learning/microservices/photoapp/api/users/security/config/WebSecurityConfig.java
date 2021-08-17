@@ -1,6 +1,7 @@
 package me.learning.microservices.photoapp.api.users.security.config;
 
 import me.learning.microservices.photoapp.api.users.security.AuthenticationFilter;
+import me.learning.microservices.photoapp.api.users.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -16,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import me.learning.microservices.photoapp.api.users.security.authorization.AuthorizationFilter;
 import me.learning.microservices.photoapp.api.users.security.authorization.AuthorizationHeaderParser;
-import me.learning.microservices.photoapp.api.users.service.UsersService;
 
 @Configuration
 @Profile("!security-disabled")

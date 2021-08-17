@@ -4,6 +4,15 @@ spring:
       enabled: false
     bus:
       enabled: false
+    discovery:
+      client:
+        simple:
+          instances:
+            albums-ws:
+              - instanceId: albums-ws1
+                serviceId: albums-ws
+                host: localhost
+                port: 9561
   application:
     name: users-ws
   datasource:
@@ -32,13 +41,8 @@ management:
       exposure.include:
 
 eureka:
-  instance:
-    hostname: localhost
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
-    serviceUrl.defaultZone: http://localhost:8010/eureka
-    register-with-eureka: true
-    fetch-registry: true
+    enabled: false
 
 authorization:
   token:
