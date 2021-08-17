@@ -7,7 +7,7 @@ import me.learning.microservices.photoapp.api.users.ui.model.CreateUserResponse;
 import me.learning.microservices.photoapp.api.users.ui.model.UserResponse;
 
 @UtilityClass
-public class UsersControllerResponseUtils {
+public class UserResponseUtils {
 
     public static boolean userResponseEqualsWithoutAlbums(User user, UserResponse userResponse) {
         return user == null && userResponse == null

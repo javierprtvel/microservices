@@ -27,3 +27,6 @@ eureka:
     prefer-ip-address: false
   server:
     enableSelfPreservation: false
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
